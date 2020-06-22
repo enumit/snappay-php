@@ -1,0 +1,22 @@
+{
+    "name": "enumit/snappay-php",
+    "description": "Snappay helper for PHP",
+    "type": "library",
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "^6.5",
+        "ext-json": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davy",
+            "email": "pukuidavy@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "enumit\\snappay\\": ["src/"]
+        }
+    }
+}
