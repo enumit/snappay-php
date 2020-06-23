@@ -13,6 +13,7 @@ trait GatewayTrait
 {
     protected $merchantNo;
     protected $notifyUrl;
+    protected $returnUrl;
     protected $format = 'JSON';
     protected $charset = 'UTF-8';
     protected $signType = 'MD5';
@@ -23,7 +24,7 @@ trait GatewayTrait
     protected $client;
     protected $signature;
 
-    public function __construct($merchantNo, $appId, $secret, $notifyUrl)
+    public function __construct($merchantNo, $appId, $secret, $notifyUrl, $returnUrl)
     {
         $this->commonData = [
             'app_id' => $appId,
@@ -40,6 +41,7 @@ trait GatewayTrait
 
         $this->merchantNo = $merchantNo;
         $this->notifyUrl = $notifyUrl;
+        $this->returnUrl = $returnUrl;
 
         $this->client = new Client([
             'base_uri' => 'https://open.snappay.ca/api/gateway',
