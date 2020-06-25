@@ -74,6 +74,6 @@ class Signature
 
         ksort($data);
 
-        return implode($data, '&');
+        return http_build_query($data);
     }
 }

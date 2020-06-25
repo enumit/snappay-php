@@ -11,6 +11,8 @@ use GuzzleHttp\Client;
 
 trait GatewayTrait
 {
+    protected $urlGateway = 'https://open.snappay.ca/api/gateway';
+
     protected $merchantNo;
     protected $notifyUrl;
     protected $returnUrl;
@@ -44,7 +46,6 @@ trait GatewayTrait
         $this->returnUrl = $returnUrl;
 
         $this->client = new Client([
-            'base_uri' => 'https://open.snappay.ca/api/gateway',
             'timeout' => 10.0,
         ]);
 
@@ -63,7 +64,7 @@ trait GatewayTrait
         $sign = $this->signature->sign($requestData);
         $requestData['sign'] = $sign;
 
-        $response = $this->client->request('POST', [
+        $response = $this->client->request('POST', $this->urlGateway, [
             'headers' => $this->headers,
             'json' => $requestData,
         ]);
@@ -76,11 +77,6 @@ trait GatewayTrait
 
         if ($content['code'] != 0) {
             throw new \Exception($content['msg']);
-        }
-
-        $sign = $this->signature->sign($content['data']);
-        if ($sign != $content['sign']) {
-            throw new \Exception('Sign invalid');
         }
 
         return Response::make($content);

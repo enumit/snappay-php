@@ -5,6 +5,7 @@ namespace enumit\snappay;
 
 
 use enumit\snappay\Requests\AliPayRequest;
+use enumit\snappay\Requests\ExchangeRateQueryRequest;
 use enumit\snappay\Requests\MiniPayRequest;
 use enumit\snappay\Requests\OrderCancelRequest;
 use enumit\snappay\Requests\OrderQueryRequest;
@@ -119,5 +120,19 @@ class Gateway
         return $this->send($request);
     }
 
+    /**
+     * Exchange Rate Query
+     *
+     * @param $baseCurrencyUnit
+     * @param $paymentMethod
+     * @param $payType
+     * @return Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function exchangeRateQuery($baseCurrencyUnit, $paymentMethod, $payType)
+    {
+        $request = ExchangeRateQueryRequest::make($baseCurrencyUnit, $paymentMethod, $payType);
 
+        return $this->send($request);
+    }
 }
