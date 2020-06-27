@@ -76,7 +76,7 @@ trait GatewayTrait
 
         $content = json_decode($response->getBody()->getContents(), true);
 
-        if ($content['code'] != 0) {
+        if ($content['code'] != '0') {
             throw new \Exception($content['msg']);
         }
 

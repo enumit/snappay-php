@@ -25,13 +25,14 @@ class Gateway
      * @param $userOpenId
      * @param $description
      * @param $attach
+     * @param null $subAppId
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function miniPay($outOrderNo, $amount, $userOpenId, $description, $attach)
+    public function miniPay($outOrderNo, $amount, $userOpenId, $description, $attach, $subAppId = null)
     {
         $request = MiniPayRequest::make($this->merchantNo, $outOrderNo, $amount, $userOpenId,
-            $description, $attach, $this->notifyUrl);
+            $description, $attach, $this->notifyUrl, $subAppId);
 
         return $this->send($request);
     }

@@ -8,7 +8,7 @@ class MiniPayRequest extends Request
 {
     protected $method = 'pay.minipay';
 
-    public static function make($merchantNo, $outOrderNo, $amount, $userOpenId, $description, $attach, $notifyUrl)
+    public static function make($merchantNo, $outOrderNo, $amount, $userOpenId, $description, $attach, $notifyUrl, $subAppId)
     {
         $requestData = [
             'merchant_no' => $merchantNo,
@@ -22,6 +22,12 @@ class MiniPayRequest extends Request
             'attach' => $attach,
             'effective_minutes' => 60,
         ];
+
+        if ($subAppId) {
+            $requestData['extension_parameters'] = [
+                'sub_app_id' => $subAppId,
+            ];
+        }
 
         return new static($requestData);
     }
