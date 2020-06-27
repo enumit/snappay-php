@@ -74,6 +74,15 @@ class Signature
 
         ksort($data);
 
-        return http_build_query($data);
+        $string = '';
+        foreach ($data as $key => $val) {
+            if (is_array($val)) {
+                $val = json_encode($val);
+            }
+
+            $string .= $key . '=' . $val . '&';
+        }
+
+        return rtrim($string, '&');
     }
 }

@@ -81,7 +81,7 @@ class Gateway
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function orderQuery($outOrderNo, $transNo)
+    public function orderQuery($outOrderNo, $transNo = null)
     {
         $request = OrderQueryRequest::make($this->merchantNo, $outOrderNo, $transNo);
 

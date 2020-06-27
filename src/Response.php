@@ -71,6 +71,22 @@ class Response
     }
 
     /**
+     * @return array
+     */
+    public function getFirst()
+    {
+        return isset($this->data[0]) ? $this->data[0] : [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getList()
+    {
+        return $this->data;
+    }
+
+    /**
      * @return string
      */
     public function getMsg()

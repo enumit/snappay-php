@@ -8,6 +8,7 @@ use enumit\snappay\Requests\Request;
 use enumit\snappay\Response;
 use enumit\snappay\Signature;
 use GuzzleHttp\Client;
+use mysql_xdevapi\Exception;
 
 trait GatewayTrait
 {
@@ -77,6 +78,10 @@ trait GatewayTrait
 
         if ($content['code'] != 0) {
             throw new \Exception($content['msg']);
+        }
+
+        if ($content['sign'] != $this->signature->sign($content)) {
+            throw new \Exception('Invalid signature on response');
         }
 
         return Response::make($content);
