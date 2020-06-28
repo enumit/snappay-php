@@ -17,11 +17,15 @@ class Signature
 
     /**
      * @param array $data
+     * @param null $signType
      * @return string
+     * @throws \Exception
      */
-    public function sign(array $data)
+    public function sign(array $data, $signType = null)
     {
-        switch ($this->signType) {
+        $signType = isset($signType) ? $signType : $this->signType;
+
+        switch ($signType) {
             case 'MD5':
                 $sign = $this->signMd5($data);
                 break;
@@ -29,7 +33,7 @@ class Signature
                 $sign = $this->signRsa($data);
                 break;
             default:
-                $sign = '';
+                throw new \Exception('Sign type not supported');
         }
 
         return $sign;

@@ -13,6 +13,7 @@ trait GatewayTrait
 {
     protected $urlGateway = 'https://open.snappay.ca/api/gateway';
 
+    protected $appId;
     protected $merchantNo;
     protected $format = 'JSON';
     protected $charset = 'UTF-8';
@@ -44,6 +45,7 @@ trait GatewayTrait
             'Content-Type' => 'application/json',
         ];
 
+        $this->appId = $appId;
         $this->merchantNo = $merchantNo;
 
         $this->client = new Client([

@@ -141,4 +141,47 @@ class Gateway
 
         return $this->send($request);
     }
+
+    /**
+     * Verify notify data
+     *
+     * @param $data
+     * @return bool
+     * @throws \Exception
+     */
+    public function verifyNotify($data)
+    {
+        if (! isset($data['sign_type']) || ! isset($data['sign']) || ! isset($data['app_id'])) {
+            return false;
+        }
+
+        if ($data['sign'] != $this->signature->sign($data, $data['sign_type'])) {
+            return false;
+        }
+
+        if ($data['app_id'] != $this->appId) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Get notify success response
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function getNotifySuccessResponse()
+    {
+        $data = [
+            'code' => '0',
+            'msg' => 'SUCCESS',
+            'sign_type' => 'MD5',
+        ];
+
+        $data['sign']  = $this->signature->sign($data);
+
+        return $data;
+    }
 }

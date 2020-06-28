@@ -73,7 +73,7 @@ class Response
     /**
      * @return array
      */
-    public function getFirst()
+    public function getFirstData()
     {
         return isset($this->data[0]) ? $this->data[0] : [];
     }
