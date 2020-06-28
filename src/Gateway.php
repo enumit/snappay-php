@@ -24,15 +24,16 @@ class Gateway
      * @param $amount
      * @param $userOpenId
      * @param $description
+     * @param $notifyUrl
      * @param $attach
      * @param null $subAppId
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function miniPay($outOrderNo, $amount, $userOpenId, $description, $attach, $subAppId = null)
+    public function miniPay($outOrderNo, $amount, $userOpenId, $description, $notifyUrl, $attach, $subAppId = null)
     {
         $request = MiniPayRequest::make($this->merchantNo, $outOrderNo, $amount, $userOpenId,
-            $description, $attach, $this->notifyUrl, $subAppId);
+            $description, $notifyUrl, $attach, $subAppId);
 
         return $this->send($request);
     }
@@ -43,15 +44,17 @@ class Gateway
      * @param $outOrderNo
      * @param $amount
      * @param $description
+     * @param $notifyUrl
+     * @param $returnUrl
      * @param $attach
      * @param $browserType
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function aliPay($outOrderNo, $amount, $description, $attach, $browserType)
+    public function aliPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach, $browserType)
     {
         $request = AliPayRequest::make($this->merchantNo, $outOrderNo, $amount, $description,
-            $attach, $this->notifyUrl, $this->returnUrl, $browserType);
+            $notifyUrl, $returnUrl, $attach, $browserType);
 
         return $this->send($request);
     }
@@ -62,14 +65,16 @@ class Gateway
      * @param $outOrderNo
      * @param $amount
      * @param $description
+     * @param $notifyUrl
+     * @param $returnUrl
      * @param $attach
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function unionPay($outOrderNo, $amount, $description, $attach)
+    public function unionPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach)
     {
         $request = UnionPayRequest::make($this->merchantNo, $outOrderNo, $amount, $description,
-            $attach, $this->notifyUrl, $this->returnUrl);
+            $notifyUrl, $returnUrl, $attach);
 
         return $this->send($request);
     }

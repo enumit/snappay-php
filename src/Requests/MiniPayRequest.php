@@ -8,7 +8,7 @@ class MiniPayRequest extends Request
 {
     protected $method = 'pay.minipay';
 
-    public static function make($merchantNo, $outOrderNo, $amount, $userOpenId, $description, $attach, $notifyUrl, $subAppId)
+    public static function make($merchantNo, $outOrderNo, $amount, $userOpenId, $description, $notifyUrl, $attach, $subAppId)
     {
         $requestData = [
             'merchant_no' => $merchantNo,

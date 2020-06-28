@@ -8,15 +8,12 @@ use enumit\snappay\Requests\Request;
 use enumit\snappay\Response;
 use enumit\snappay\Signature;
 use GuzzleHttp\Client;
-use mysql_xdevapi\Exception;
 
 trait GatewayTrait
 {
     protected $urlGateway = 'https://open.snappay.ca/api/gateway';
 
     protected $merchantNo;
-    protected $notifyUrl;
-    protected $returnUrl;
     protected $format = 'JSON';
     protected $charset = 'UTF-8';
     protected $signType = 'MD5';
@@ -27,7 +24,12 @@ trait GatewayTrait
     protected $client;
     protected $signature;
 
-    public function __construct($merchantNo, $appId, $secret, $notifyUrl, $returnUrl)
+    public static function make($merchantNo, $appId, $secret)
+    {
+        return new static($merchantNo, $appId, $secret);
+    }
+
+    public function __construct($merchantNo, $appId, $secret)
     {
         $this->commonData = [
             'app_id' => $appId,
@@ -43,8 +45,6 @@ trait GatewayTrait
         ];
 
         $this->merchantNo = $merchantNo;
-        $this->notifyUrl = $notifyUrl;
-        $this->returnUrl = $returnUrl;
 
         $this->client = new Client([
             'timeout' => 10.0,

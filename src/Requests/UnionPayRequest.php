@@ -8,7 +8,7 @@ class UnionPayRequest extends Request
 {
     protected $method = 'pay.webpay';
 
-    public static function make($merchantNo, $outOrderNo, $amount, $description, $attach, $returnUrl, $notifyUrl)
+    public static function make($merchantNo, $outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach)
     {
         $requestData = [
             'merchant_no' => $merchantNo,
