@@ -86,14 +86,14 @@ class Gateway
      * Query Order
      * @link http://developer.snappay.ca/openapi.html#order-apis-query-order-api-post
      *
-     * @param $outOrderNo
      * @param $transNo
+     * @param $outOrderNo
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function orderQuery($outOrderNo, $transNo = null)
+    public function orderQuery($transNo, $outOrderNo = null)
     {
-        $request = OrderQueryRequest::make($this->merchantNo, $outOrderNo, $transNo);
+        $request = OrderQueryRequest::make($this->merchantNo, $transNo, $outOrderNo);
 
         return $this->send($request);
     }

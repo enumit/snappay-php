@@ -10,18 +10,18 @@ class OrderQueryRequest extends Request
 
     /**
      * @param $merchantNo
-     * @param $outOrderNo
      * @param $transNo
+     * @param $outOrderNo
      * @return OrderQueryRequest
      */
-    public static function make($merchantNo, $outOrderNo, $transNo)
+    public static function make($merchantNo, $transNo, $outOrderNo)
     {
         $requestData['merchant_no'] = $merchantNo;
 
-        if ($outOrderNo) {
-            $requestData['out_order_no'] = $outOrderNo;
-        } else if ($transNo) {
+        if ($transNo) {
             $requestData['trans_no'] = $transNo;
+        } else if ($outOrderNo) {
+            $requestData['out_order_no'] = $outOrderNo;
         }
 
         return new static($requestData);
