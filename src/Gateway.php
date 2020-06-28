@@ -19,6 +19,7 @@ class Gateway
 
     /**
      * Mini Program Pay
+     * @link http://developer.snappay.ca/openapi.html#pay-apis-mini-program-api-post
      *
      * @param $outOrderNo
      * @param $amount
@@ -39,7 +40,8 @@ class Gateway
     }
 
     /**
-     * Ali Pay
+     * Web Ali Pay
+     * @link http://developer.snappay.ca/openapi.html#pay-apis-website-pay-api-post
      *
      * @param $outOrderNo
      * @param $amount
@@ -51,7 +53,7 @@ class Gateway
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function aliPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach, $browserType)
+    public function webAliPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach, $browserType)
     {
         $request = AliPayRequest::make($this->merchantNo, $outOrderNo, $amount, $description,
             $notifyUrl, $returnUrl, $attach, $browserType);
@@ -60,7 +62,8 @@ class Gateway
     }
 
     /**
-     * Union Pay
+     * Web Union Pay
+     * @link http://developer.snappay.ca/openapi.html#pay-apis-website-pay-api-post
      *
      * @param $outOrderNo
      * @param $amount
@@ -71,7 +74,7 @@ class Gateway
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function unionPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach)
+    public function webUnionPay($outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach)
     {
         $request = UnionPayRequest::make($this->merchantNo, $outOrderNo, $amount, $description,
             $notifyUrl, $returnUrl, $attach);
@@ -81,6 +84,7 @@ class Gateway
 
     /**
      * Query Order
+     * @link http://developer.snappay.ca/openapi.html#order-apis-query-order-api-post
      *
      * @param $outOrderNo
      * @param $transNo
@@ -95,13 +99,14 @@ class Gateway
     }
 
     /**
-     * Cancel Order
+     * Revoke Order
+     * @link http://developer.snappay.ca/openapi.html#order-apis-revoke-order-api-post
      *
      * @param $outOrderNo
      * @return Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function orderCancel($outOrderNo)
+    public function orderRevoke($outOrderNo)
     {
         $request = OrderCancelRequest::make($this->merchantNo, $outOrderNo);
 
@@ -110,6 +115,7 @@ class Gateway
 
     /**
      * Refund Order
+     * @link http://developer.snappay.ca/openapi.html#order-apis-refund-api-post
      *
      * @param $outOrderNo
      * @param $outRefundNo
@@ -128,6 +134,7 @@ class Gateway
 
     /**
      * Exchange Rate Query
+     * @link http://developer.snappay.ca/openapi.html#order-apis-query-exchange-rate-post
      *
      * @param $baseCurrencyUnit
      * @param $paymentMethod
@@ -144,6 +151,7 @@ class Gateway
 
     /**
      * Verify notify data
+     * @link http://developer.snappay.ca/openapi.html#header-1.-select-sign-algorithms
      *
      * @param $data
      * @return bool
@@ -168,6 +176,7 @@ class Gateway
 
     /**
      * Get notify success response
+     * @link http://developer.snappay.ca/openapi.html#order-apis-asynchronous-notification-post
      *
      * @return array
      * @throws \Exception
