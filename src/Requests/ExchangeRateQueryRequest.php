@@ -15,6 +15,12 @@ class ExchangeRateQueryRequest extends Request
 
     protected $method = 'pay.exchangerate';
 
+    /**
+     * @param $baseCurrencyUnit
+     * @param $paymentMethod
+     * @param $payType
+     * @return ExchangeRateQueryRequest
+     */
     public static function make($baseCurrencyUnit, $paymentMethod, $payType)
     {
         $requestData = [

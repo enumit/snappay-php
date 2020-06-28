@@ -8,6 +8,14 @@ class OrderRefundRequest extends Request
 {
     protected $method = 'pay.orderrefund';
 
+    /**
+     * @param $merchantNo
+     * @param $outOrderNo
+     * @param $outRefundNo
+     * @param $refundAmount
+     * @param $refundDescription
+     * @return OrderRefundRequest
+     */
     public static function make($merchantNo, $outOrderNo, $outRefundNo, $refundAmount, $refundDescription)
     {
         $requestData = [

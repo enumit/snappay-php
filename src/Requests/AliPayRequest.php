@@ -11,6 +11,17 @@ class AliPayRequest extends Request
 
     protected $method = 'pay.webpay';
 
+    /**
+     * @param $merchantNo
+     * @param $outOrderNo
+     * @param $amount
+     * @param $description
+     * @param $notifyUrl
+     * @param $returnUrl
+     * @param $attach
+     * @param string $browserType
+     * @return AliPayRequest
+     */
     public static function make($merchantNo, $outOrderNo, $amount, $description, $notifyUrl, $returnUrl, $attach, $browserType = 'PC')
     {
         $requestData = [

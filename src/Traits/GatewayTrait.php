@@ -25,11 +25,23 @@ trait GatewayTrait
     protected $client;
     protected $signature;
 
+    /**
+     * @param $merchantNo
+     * @param $appId
+     * @param $secret
+     * @return $this
+     */
     public static function make($merchantNo, $appId, $secret)
     {
         return new static($merchantNo, $appId, $secret);
     }
 
+    /**
+     * GatewayTrait constructor.
+     * @param $merchantNo
+     * @param $appId
+     * @param $secret
+     */
     public function __construct($merchantNo, $appId, $secret)
     {
         $this->commonData = [

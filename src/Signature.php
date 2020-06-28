@@ -9,6 +9,11 @@ class Signature
     private $secret;
     private $signType;
 
+    /**
+     * Signature constructor.
+     * @param $secret
+     * @param string $signType
+     */
     public function __construct($secret, $signType = 'MD5')
     {
         $this->secret = $secret;

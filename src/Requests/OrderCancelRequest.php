@@ -8,6 +8,11 @@ class OrderCancelRequest extends Request
 {
     protected $method = 'pay.ordercancel';
 
+    /**
+     * @param $merchantNo
+     * @param $outOrderNo
+     * @return OrderCancelRequest
+     */
     public static function make($merchantNo, $outOrderNo)
     {
         $requestData = [

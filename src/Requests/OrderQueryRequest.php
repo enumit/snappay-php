@@ -8,6 +8,12 @@ class OrderQueryRequest extends Request
 {
     protected $method = 'pay.orderquery';
 
+    /**
+     * @param $merchantNo
+     * @param $outOrderNo
+     * @param $transNo
+     * @return OrderQueryRequest
+     */
     public static function make($merchantNo, $outOrderNo, $transNo)
     {
         $requestData['merchant_no'] = $merchantNo;
