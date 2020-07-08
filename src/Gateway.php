@@ -185,11 +185,7 @@ class Gateway
     {
         $data = [
             'code' => '0',
-            'msg' => 'SUCCESS',
-            'sign_type' => 'MD5',
         ];
-
-        $data['sign']  = $this->signature->sign($data);
 
         return $data;
     }
