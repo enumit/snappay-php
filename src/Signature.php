@@ -86,7 +86,7 @@ class Signature
         $string = '';
         foreach ($data as $key => $val) {
             if (is_array($val)) {
-                $val = json_encode($val);
+                $val = json_encode($val, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             }
 
             $string .= $key . '=' . $val . '&';

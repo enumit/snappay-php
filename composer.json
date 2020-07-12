@@ -1,7 +1,7 @@
 {
     "name": "enumit/snappay-php",
     "description": "Snappay helper for PHP",
-    "version" : "1.2.2",
+    "version" : "1.2.3",
     "keywords" : ["snappay", "payment"],
     "type": "library",
     "require": {
